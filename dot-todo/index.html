@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dot Todo</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+  </head>
+  <body>
+    <!-- Login Form -->
+    <div id="auth-container">
+      <form id="auth-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" id="login-btn">Login</button>
+        <button type="button" id="signup-btn">Sign Up</button>
+        <p id="auth-message"></p>
+      </form>
+    </div>
+    
+
+    <!-- App UI -->
+    <div id="app-container" style="display: none; ">
+      <div class="title">Welcome to Dot</div>
+
+      <form id="task-form">
+        <input type="text" id="task-input" placeholder="Add a task..." required />
+        <select id="due-date-select">
+          <option value="none">No Due Date</option>
+          <option value="today">Today</option>
+          <option value="tomorrow">Tomorrow</option>
+        </select>
+        <button type="submit">Add</button>
+      </form>
+      <div id="progress-bar"></div>
+      <p>In the last seven days, you've completed <span id="completed-tasks">0</span> out of <span id="total-tasks">0</span> tasks</p>
+      <span display="none" id="no-tasks" style="color: #6366f1">You have no further tasks! Take this time to relax.</span>
+      <div class="task-container"></div>
+      <div class="logout-wrapper">
+        <button id="logout">Logout</button>
+      </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
