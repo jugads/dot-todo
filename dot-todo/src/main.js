@@ -182,6 +182,7 @@ async function loadTasks() {
           ? new Date(docSnap.data().dueDate).toLocaleDateString()
           : "No Due Date"
       }</div>
+      <div class="trash-item" id="trash-${docSnap.id}">Remove</div>
     `;
 
       const checkbox = taskDiv.querySelector("input");
@@ -200,8 +201,20 @@ async function loadTasks() {
         completedTasks++;
         fixProgressBar();
       });
-
       container.appendChild(taskDiv);
+      document.getElementById(`trash-${docSnap.id}`).addEventListener(
+        "click",
+        () => {
+          taskDiv.classList.add("pop-and-remove");
+          setTimeout(() => {
+            taskDiv.remove();
+            deleteDoc(
+              doc(db, "users", auth.currentUser.uid, "tasks", docSnap.id)
+            );
+          }, 300);
+          fixProgressBar();
+        }
+      )
     } else {
       console.log("Task already Completed!");
       const sevenDaysAgo = new Date();
